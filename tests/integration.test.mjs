@@ -22,6 +22,6 @@ Nothing here.
   assert.match(html, /Alpha/)
   assert.match(html, /Beta/)
   const emptyTree = await parseMarkdown(markdown, { plugins: [binding(), loops({ data: { rows: [] } })] })
-  const emptyHtml = await renderHtml(emptyTree, { components: { Binding, Binding }, data: { rows: [] } })
+  const emptyHtml = await renderHtml(markdown, { plugins: [binding(), loops({ data: { rows: [] } })], components: { Binding }, data: { rows: [] } })
   assert.match(emptyHtml, /Nothing here/)
 })
