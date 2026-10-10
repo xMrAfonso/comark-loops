@@ -51,13 +51,14 @@ const source = `::for{:each="data.characters" item="character" key="id"}
 const document = await parseMarkdown(source, {
   plugins: [binding(), loops({ data })],
 })
-const html = await renderHtml(document, {
+const html = await renderHtml(source, {
+  plugins: [binding(), loops({ data })],
   components: { Binding },
   data,
 })
 ```
 
-`loops()` modifies the **parsed AST only**. It does not rewrite your saved Markdown. Pass the same snapshot to both parser and renderer.
+`loops()` modifies the **parsed AST only**. It does not rewrite your saved Markdown. When using `renderHtml`, pass the original Markdown string and register the same plugins. The separate `parseMarkdown` example demonstrates AST inspection and transformations; `renderHtml` expects a string rather than a pre-parsed document.
 
 ### Vue / Nuxt
 
