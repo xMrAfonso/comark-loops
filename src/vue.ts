@@ -1,7 +1,7 @@
 import type { ParserOptions, MarkdownDocument as ComarkDocument } from 'comark'
 import { parseMarkdown } from 'comark'
 import { MarkdownDocument } from '@comark/vue'
-import binding, { Binding, If } from '@comark/vue/plugins/binding'
+import binding, { Binding } from '@comark/vue/plugins/binding'
 import { defineComponent, h, shallowRef, watch, type PropType } from 'vue'
 import { loops } from './index.js'
 import type { LoopsOptions } from './core.js'
@@ -43,7 +43,7 @@ export const LoopsMarkdown = defineComponent({
     return () => h(MarkdownDocument, {
       value: document.value,
       data: props.data,
-      components: { Binding, If, ...props.components },
+      components: { Binding, ...props.components },
       componentsManifest: props.componentsManifest,
       documentKey: props.documentKey,
     })

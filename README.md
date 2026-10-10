@@ -21,7 +21,7 @@ No characters available.
 - `item` defaults to `"item"`; `index` is an optional zero-based alias.
 - `key` is an optional item property path; unique string/number values are validated.
 - `#empty` renders when the collection is empty or absent.
-- Nested `::for`, `::if`, component attribute bindings (`:value="props.item.foo"`), and inline `{{ props.item.foo }}` work. Import and register Comark's `binding()` plugin and matching `Binding` renderer for inline interpolation.
+- Nested `::for`, `::if` (when separately registered in the chosen renderer), component attribute bindings (`:value="props.item.foo"`), and inline `{{ props.item.foo }}` work. Import and register Comark's `binding()` plugin and matching `Binding` renderer for inline interpolation.
 - Supports regular Markdown and components in loop bodies.
 
 ## Install
@@ -38,7 +38,7 @@ bun add comark-loops
 import { parseMarkdown } from 'comark'
 import binding from 'comark/plugins/binding'
 import { renderHtml } from '@comark/html'
-import { Binding, If } from '@comark/html/plugins/binding'
+import { Binding } from '@comark/html/plugins/binding'
 import { loops } from 'comark-loops'
 
 const data = {
@@ -52,7 +52,7 @@ const document = await parseMarkdown(source, {
   plugins: [binding(), loops({ data })],
 })
 const html = await renderHtml(document, {
-  components: { Binding, If },
+  components: { Binding },
   data,
 })
 ```
@@ -75,7 +75,7 @@ const source = '::for{:each="data.characters" item="character"}\n{{ props.charac
 </template>
 ```
 
-`LoopsMarkdown` automatically registers Comark's `binding`, `Binding` and `If`; pass additional parser `plugins` and renderer `components` as needed. It reparses on changes to source or data (including deep changes), supports server-side rendering via async setup, and avoids patching any internal Comark renderer API.
+`LoopsMarkdown` automatically registers Comark's `binding` and `Binding` (the published `@comark/vue@0.7.0` does not export `If`; provide a compatible `If` via `components` if needed); pass additional parser `plugins` and renderer `components` as needed. It reparses on changes to source or data (including deep changes), supports server-side rendering via async setup, and avoids patching any internal Comark renderer API.
 
 ## API and limits
 
