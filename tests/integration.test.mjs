@@ -18,7 +18,7 @@ Nothing here.
   ] }
   const tree = await parseMarkdown(markdown, { plugins: [binding(), loops({ data })] })
   assert.equal(JSON.stringify(tree.nodes).includes('"for"'), false)
-  const html = await renderHtml(tree, { components: { Binding }, data })
+  const html = await renderHtml(markdown, { plugins: [binding(), loops({ data })], components: { Binding }, data })
   assert.match(html, /Alpha/)
   assert.match(html, /Beta/)
   const emptyTree = await parseMarkdown(markdown, { plugins: [binding(), loops({ data: { rows: [] } })] })
