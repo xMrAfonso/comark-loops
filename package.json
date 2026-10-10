@@ -1,0 +1,40 @@
+{
+  "name": "comark-loops",
+  "version": "0.1.0",
+  "description": "Standalone Comark ::for directive plugin with scoped bindings and Vue/Nuxt integration",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": ["dist", "README.md", "LICENSE"],
+  "repository": { "type": "git", "url": "git+https://github.com/xMrAfonso/comark-loops.git" },
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./vue": { "types": "./dist/vue.d.ts", "import": "./dist/vue.js" },
+    "./core": { "types": "./dist/core.d.ts", "import": "./dist/core.js" }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "bun run build && node --test tests/*.test.mjs",
+    "check": "bun run typecheck && bun run test",
+    "prepack": "bun run check"
+  },
+  "peerDependencies": {
+    "comark": "^0.7.0",
+    "@comark/vue": "^0.7.0",
+    "vue": "^3.5.0"
+  },
+  "peerDependenciesMeta": {
+    "@comark/vue": { "optional": true },
+    "vue": { "optional": true }
+  },
+  "devDependencies": {
+    "@comark/vue": "0.7.0",
+    "@comark/html": "0.7.0",
+    "@vue/server-renderer": "^3.5.0",
+    "comark": "0.7.0",
+    "typescript": "^5.9.3",
+    "vue": "^3.5.0"
+  },
+  "engines": { "node": ">=20" }
+}
