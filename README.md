@@ -26,9 +26,11 @@ No characters available.
 
 ## Install
 
-Install from this repository or (once published to npm) use:
+Install from this repository or use one of the following:
 
 ```sh
+npm i comark-loops
+pnpm add comark-loops
 bun add comark-loops
 ```
 
