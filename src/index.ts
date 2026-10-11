@@ -7,7 +7,7 @@ export type { LoopsOptions, LoopDocument, LoopNode } from './core.js'
 
 /**
  * Comark parse-time plugin. Add `binding()` separately when using `{{ }}`.
- * For reactive Vue rendering use `LoopsMarkdown` from `comark-loops/vue`.
+ * Item/index aliases use `loop.*`; `props.*` retains its component/root scope.
  */
 export function loops(options: LoopsOptions = {}): ComarkPlugin {
   return {
